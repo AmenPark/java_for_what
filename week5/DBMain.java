@@ -7,10 +7,49 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import oracle.jdbc.driver.OracleDriver;
-
+/*
+ *	library vs framework : 별 차이는 없다. 다만 기능적으로 tool을 지원하면 framework? 
+ */
 public class DBMain {
+	public static void delete() {
+		Connection conn = null;
+		String addr = "jdbc:oracle:thin:@" + SECRET.ip + ":" + SECRET.port + ":" + SECRET.sid;
+		PreparedStatement pstmt = null;
+		try {
+//			Class.forName("oracle.jdbc.driver.OracleDriver"); 자동으로 요즘엔 해줌.
+//			pstmt를 이용하면 ?부분을 자동으로 채워준다. set부분을 통해 뭘 넣을지, 그리고 몇번째에 넣을지를 정해야함.
+			conn = DriverManager.getConnection(addr, SECRET.uid, SECRET.upw);
+			String sql = "delete from testtable where aid is null";
+			pstmt = conn.prepareStatement(sql);
+
+			if (pstmt.executeUpdate()>=1) {
+				System.out.println(pstmt);
+				System.out.println("성공");
+			}
+			System.out.println("-----");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		/*
+		 * statement 부터 닫고 connection을 닫아야 한다.
+		 */
+		try {
+			pstmt.close();
+		} catch (Exception e) {	}
+
+		try {
+			conn.close();
+		} catch (Exception e) {
+		}
+	}
+	
 	public static void select() {
+		
 		Connection conn = null;
 		String addr = "jdbc:oracle:thin:@" + SECRET.ip + ":" + SECRET.port + ":" + SECRET.sid;
 		PreparedStatement pstmt = null;
@@ -63,7 +102,6 @@ public class DBMain {
 			pstmt = conn.prepareStatement(sql);
 
 			if (pstmt.executeUpdate()>=1) {
-				System.out.println(pstmt);
 				System.out.println("성공");
 			}
 			System.out.println("-----");
@@ -139,6 +177,7 @@ public class DBMain {
 
 	public static void main(String[] args) {
 //		insert();
-		select();
+//		select();
+		delete();
 	}
 }
