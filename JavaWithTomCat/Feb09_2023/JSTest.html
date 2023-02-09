@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<!-- JS. 자바스크립트는 ESMAScript이다. 문법이 자바랑 비슷해서 그렇게 부를 뿐 자바와는 무관.
+	자바는 서버에서 하는 server-side programming language. JRE가 해석한다.
+	자스는 client-side programming language. Webbrowser의 JS엔진이 해석.
+	크롬이 JS엔진 잘 탑재해서 해석속도가 빨랐다. 인터프리터 방식, JAVA보다 고급언어라고 함. -->
+<script type="text/javascript">
+	// alert("경고창 내용");
+//	var c = confirm("확인 또는 취소버튼"); // -> 확인은 true, 취소는 false
+//	if(c){
+//		alert("확인");
+//	}else{
+//		alert("취소");
+//	}
+	
+//	var p = prompt("팝업 내용", "사용자 문자입력칸 디폴트값"); 
+	function functionName() {
+		alert("함수발동!");
+	}	
+	
+	function plus(a,b){
+		return a+b
+	}
+	
+//	functionName();
+//	var c=plus(3,5);
+//	alert(c);
+	var k = 0;
+	function showAlert(){
+		k++;
+		alert("알람"+k);
+	}	// 모든 DOM객체는 on을 통해 함수 연결이 가능.
+	
+	
+</script>
+</head>
+<body>
+	<button onclick="showAlert();">버튼이당</button>
+</body>
+</html>
