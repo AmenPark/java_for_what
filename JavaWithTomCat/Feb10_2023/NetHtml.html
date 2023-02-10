@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="StudyJS.js"></script>
+</head>
+<body>
+	<!-- form에서 onsubmit에서 true면 action 실행, false면 실행안한다. -->
+	<form name="form" action="https://www.naver.com" onsubmit="return valcheck();">
+		id:<input name="id" autofocus="autofocus" maxlength="10"><br>
+		pw:<input name="pw" maxlength="10" type="password" ><br>
+		pwcheck:<input name="pw2" maxlength="10" type="password" ><br>
+		나이:<input name="age" maxlength="3" ><br>
+		 <input type="submit" value="val">
+	</form>
+	
+	<button onclick="testfunc();">테스트</button>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="JSImportTest.js"></script>
+<script type="text/javascript">
+	function checkimg(){
+		alert(3);
+		alert(document.f.fileInput.value);
+		return 1;
+	}
+</script>
+</head>
+<body>
+<form name="f" action="">
+	<input type="file" name="fileInput">
+	<button onclick="checkimg();">테스트버튼</button>
+</form>
+</body>
+</html>
