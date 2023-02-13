@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>단위변환</title>
+<script type="text/javascript">
+
+	function valcheck(){
+		var a = document.f.input
+		if(a.value==""){
+			alert("비어있음");
+			return false;
+		}
+		if(isNaN(a.value)){
+			alert("숫자가 아님")
+			return false;	
+		}
+		return true;
+		
+	function colorChange(){
+		alert("4");
+		if(document.f.choice.value.startsWith("c")){
+			document.getParameterById("t").style.backgroundColor="#ff00ff";
+		}else if(document.f.choice.value.startsWith("㎡")){
+			document.getParameterById("t").style.backgroundColor="#00aaff";
+		}
+	}
+	}
+</script>
+</head>
+<body>
+	<form name="f"  onsubmit="return valcheck();" action="output.jsp" method="post">
+		<table id="t">
+			<tr>
+			<th align="center"> 단위변환</th>
+			</tr>
+			
+			<tr align="center">
+				<td>입력:<input name="input"></td>
+			</tr>
+			<tr>
+			<td align="center">
+				<select name="choice" onclick="colorChange();">
+				<option value="cm,inch,0.393701,0">cm → inch</option>
+				<option value="㎡,평,0.3025,0">㎡ → 평</option>
+				<option value="℃,℉,1.8,32">℃ → ℉</option>
+				<option value="km/h,mi/h,0.621371,0">km/h → mi/h</option>
+				</select>
+			</td>
+			</tr>
+			<tr>
+				<td align="center"><button>결과보기</button></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
