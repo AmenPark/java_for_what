@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/index.css">
+<script type="text/javascript" src="checker.js"></script>
+</head>
+<body>
+	<h1> 시작페이지</h1>
+	<form name="f" action="Controller" method="post" onsubmit="return check();" enctype="multipart/form-data">
+	<table width="300px">
+		<tr height="40px">
+		<th align="center" colspan="2"> 비만도 검사</th>
+		</tr>
+		<tr>
+		<td> 이름 </td>
+		<td> <input name="name"></td>
+		</tr>
+		<tr>
+		<td> 키 </td>
+		<td> <input name="height">cm</td>
+		</tr>
+		<tr>
+		<td> 몸무게 </td>
+		<td> <input name="weight">kg</td>
+		</tr>
+		<tr>
+		<td> 사진 </td>
+		<td> <input name="file" type="file" ></td>
+		</tr>
+		<tr>
+		<td colspan="2" align="center"> <button>결과보기</button>
+		</td>
+		</tr>
+		
+	</table>
+	</form>
+</body>
+</html>

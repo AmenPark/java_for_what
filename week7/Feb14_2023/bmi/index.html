@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// document - 이 문서
+	// navigator - 브라우저(기능 접근용)
+	// window - 브라우저(디자인 접근용)
+	var userinfo = navigator.useragent;
+	if(userinfo.indexOf("Android")!=-1 &&
+			userinfo.indexOf("iPhone")!=-1){
+		alert("잘못된 접근");
+	}else{
+		location.href="Controller";
+	}
+</script>
+</head>
+<body>
+	
+</body>
+</html>

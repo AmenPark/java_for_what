@@ -1,0 +1,24 @@
+@charset "EUC-KR";
+
+@font-face {
+	font-family: "abc";
+	src: url("KCC-Ganpan.ttf");
+}
+
+
+table{
+	font-family : "abc";
+}
+
+.oper1{
+	background-color:#ab00ba;
+}
+.oper2{
+	background-color:#00baba;
+}
+.oper3{
+	background-color:#99bbd1;
+}
+.oper4{
+	background-color:#ab1259;
+}
