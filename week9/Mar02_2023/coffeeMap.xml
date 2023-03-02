@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "coffeemap">
+	<select id="coffeeselectbyname"
+		resultType="idkwhatever.Coffee">
+		select * from coffee order by name
+	</select>
+	<insert id="insertcoffee" parameterType="idkwhatever.Coffee">
+		insert into coffee values(#{name}, #{price})
+	</insert>
+	
+	<!-- 값이 숫자라면 resultType=java.lang.Integer 같은걸로 해줘야함. -->
+</mapper>
