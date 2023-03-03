@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SnackQ">
+	<insert id="InsertQ"
+		parameterType="com.PAM.Mar03_2023.Notice.snackDTO">
+		insert into snack values(snack_seq.nextval, #{s_name},#{s_price}, #{exp})
+	</insert>
+	<select id="selectAll" resultType="com.PAM.Mar03_2023.Notice.snackDTO">
+		select s_name, s_price, exp from snack
+	</select>
+	<select id="selectCount" resultType="int">
+		select count(*) from snack
+	</select>
+	
+	<select id="selectPage" resultType="com.PAM.Mar03_2023.Notice.snackDTO"
+		parameterType="hashmap">
+		select s_name, s_price, exp from (
+			select rownum as rn, s_name, s_price, exp
+			from snack
+			where s_name like '%'||#{search}||'%'
+		) where rn &gt;=#{start} and rn &lt;=#{end}
+	</select>
+
+</mapper>
