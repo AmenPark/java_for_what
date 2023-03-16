@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("div").mouseover(function(){
+			$("div").css("background-color","yellow").css("color","red");
+		});
+		$("div").mouseleave(function(){
+			$("div").css("background-color","black").css("color","yellow");
+		});
+		$(".a").click(function a1(){
+			$("div").css("width","100px").css("height","100px");
+			$(".a").click(function (){
+				$("div").css("width","200px").css("height","200px");
+				$(".a").click(a1);
+			});
+		});
+		$("#b2").click(function() {
+			var l = Math.random()*100
+			var k = Math.random()*100
+			
+			$("div").css("left",l);
+			$("div").css("top",k);
+		});
+	});
+	
+</script>
+<style type="text/css">
+div{
+	width:200px; height:200px;
+	background-color: black;
+	color:white;
+	transition: all 1s ease-in;
+}
+img{
+	width:50px; height:50px;
+}
+</style>
+</head>
+<body>
+
+	<div>
+		글자색상이란다
+		<img alt="NO IMAGE" src="rock.png">
+	</div>
+	<br>
+	<button class="a">버튼이요</button><br>
+	<br>
+	<button id="b2">버튼2요</button>
+</body>
+</html>

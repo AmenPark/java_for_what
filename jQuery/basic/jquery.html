@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jquery연습장</title>
+<script type="text/javascript">
+	function alarm(text){
+		alert(text);
+	}
+</script>
+</head>
+<body>
+	<h1>Jquery를 실험해봅시다.</h1>
+	<div>
+	<input name="printMsg">
+	<button onclick="alarm(document.getElementsByName('printMsg')[0].value);">버튼하나</button>
+	<button onclick="alarm(this);">버튼둘</button>
+	<button id="3" onclick="alarm('seockSam');">버튼삼</button>
+	</div>
+</body>
+</html>

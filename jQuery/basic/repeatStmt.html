@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	
+	function a(x,y){
+		alert(x);
+		alert(y);
+	}
+	$(function() {
+		var v={
+				color:"red",
+				bgColor:"black"
+		}
+		$("h1").each(function(a,b){
+			$(b).css("color",v.color)
+		});
+		
+		
+	});
+	
+</script>
+</head>
+<body>
+<h1>t1</h1>
+<h1>t2</h1>
+<h1>t3</h1>
+<h1>t4</h1>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		alert("같다");
+		$(".i").click(function(){
+			alert($(".t").val());
+		})
+		$(".t").keypress(function(){
+			return false;
+		});
+		
+	});
+	$(document).ready(function(){
+		alert("구형문법");
+	});	
+	
+</script>
+</head>
+<body>
+	<input class="t" value="azx">
+	<button class="i">버튼이</button>
+	<button onclick="z();">버튼삼</button>
+</body>
+</html>

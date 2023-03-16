@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	//37 좌 39 우 38 상 40 하
+	vel = [ 5, 5, 5, 5 ]
+	var shiftChecker = false;
+	var ctrlChecker = false;
+	function fl() {
+		$("img").css("left", $("img").offset().left - vel[0]);
+		if (!shiftChecker && !ctrlChecker) {
+			vel[0]++;
+		}
+		if(ctrlChecker){
+			vel[0] = 5;
+		}
+	}
+	function fr() {
+		$("img").css("left", $("img").offset().left + vel[2]);
+		if (!shiftChecker && !ctrlChecker) {
+			vel[2]++;
+		}
+		if(ctrlChecker){
+			vel[2] = 5;
+		}
+	}
+	function fu() {
+		$("img").css("top", $("img").offset().top - vel[1]);
+		if (!shiftChecker && !ctrlChecker) {
+			vel[1]++;
+		}
+		if(ctrlChecker){
+			vel[1] = 5;
+		}
+	}
+	function fd() {
+		$("img").css("top", $("img").offset().top + vel[3]);
+		if (!shiftChecker && !ctrlChecker) {
+			vel[3]++;
+		}
+		if(ctrlChecker){
+			vel[3] = 5;
+		}
+	}
+	var flf = [];
+	var frf = [];
+	var fuf = [];
+	var fdf = [];
+
+	$(function() {
+		$("html").keydown(function(e) {
+			if (e.keyCode == 16) {
+				shiftChecker = true;
+			}
+			if (e.keyCode == 17) {
+				ctrlChecker = true;
+			}
+			
+			if (e.keyCode == 37) {
+				$("#l").val(flf.length);
+				if (flf.length == 0) {
+					flf.push(setInterval(fl, 100));
+				}
+			}
+			if (e.keyCode == 38) {
+				$("#u").val(fuf.length);
+				if (fuf.length == 0) {
+					fuf.push(setInterval(fu, 100));
+				}
+			}
+			if (e.keyCode == 39) {
+				$("#r").val(frf.length);
+				if (frf.length == 0) {
+					frf.push(setInterval(fr, 100));
+				}
+			}
+			if (e.keyCode == 40) {
+				$("#d").val(fdf.length);
+				if (fdf.length == 0) {
+					fdf.push(setInterval(fd, 100));
+				}
+			}
+		});
+		$("html").keyup(function(e) {
+			if (e.keyCode == 16) {
+				shiftChecker = false;
+			}
+			if (e.keyCode == 17) {
+				ctrlChecker = false;
+			}
+			if (e.keyCode == 37) {
+				$("#l").val(vel);
+				clearInterval(flf[0]);
+				flf.pop();
+				vel[0] = 5
+			}
+			if (e.keyCode == 38) {
+				$("#u").val("False");
+				clearInterval(fuf[0]);
+				fuf.pop();
+				vel[1] = 5
+			}
+			if (e.keyCode == 39) {
+				$("#r").val("False");
+				clearInterval(frf[0]);
+				frf.pop();
+				vel[2] = 5
+			}
+			if (e.keyCode == 40) {
+				$("#d").val("False");
+				clearInterval(fdf[0]);
+				fdf.pop();
+				vel[3] = 5
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<img src="water.png" style="position: absolute;"> 키상태:
+	<input id="ke" readonly> 상:
+	<input id="u" readonly> 좌:
+	<input id="l" readonly> 우:
+	<input id="r" readonly> 하:
+	<input id="d" readonly>
+</body>
+</html>

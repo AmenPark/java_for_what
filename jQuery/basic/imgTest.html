@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	var msup = false;
+	var clicked = false;
+	var imgX = 0;
+	var imgY = 0;
+	var moved = false;
+	$(function() {
+		$("img").mouseenter(function() {
+			msup = true;
+			$("#i1").val("올라감");
+		});
+		$("img").mouseleave(function() {
+			msup = false;
+			$("#i1").val("내려감");
+		});
+		$("html").mousedown(function(e) {
+			if (e.button == 2) {
+				$("#i2").val("누름");
+				if (msup) {
+					clicked = true;
+					imgX = $("img").css("left");
+					imgY = $("img").css("top");
+				}
+			}
+		});
+		$("html").mouseup(function(e) {
+			if (e.button == 2) {
+				$("#i2").val("뗌");
+				clicked = false;
+				moved = false;
+			}
+		});
+		$("html").mousemove(
+						function(e) {
+							if (clicked) {
+								if (moved) {
+									$("img").css(
+											"left",
+											$("img").offset().left
+													- (imgX - e.clientX));
+									$("img").css(
+											"top",
+											$("img").offset().top
+													- (imgY - e.clientY));
+								}
+								imgX = e.clientX;
+								imgY = e.clientY;
+								moved = true;
+							}
+						});
+		$("html").contextmenu(function() {
+			return false;
+		});
+
+	});
+</script>
+</head>
+<body>
+	x
+	<input id="i1" readonly> y
+	<input id="i2" readonly>
+	<br>
+	<img src="water.png" style="position: absolute;">
+</body>
+</html>

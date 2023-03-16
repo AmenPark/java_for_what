@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	
+	function cl(){
+		var td_menu = $("<td></td>").text($("#menu").val());
+		var td_price = $("<td></td>").text($("#price").val());
+		var tr = $("<tr></tr>").append(td_menu,td_price);
+		$("#title").after(tr);
+	}
+	var kl = [];
+	var tt = null;
+	var tb = null
+	function init(){
+		tt = $("#title");
+		tb = $("#tb")
+	}
+	function c3(i, obj){
+		tb.append($("<tr></tr>").append($("<td></td>").text(obj.menu),$("<td></td>").text(obj.price) ))
+	}
+	
+	function c2(){
+		kl.push({menu:$("#menu").val(), price:$("#price").val()})
+		kl.sort(function(a,b){
+			return a.price-b.price;
+		});
+		tb.empty();
+		$(kl).each(c3);
+		tb.prepend(tt);
+	}
+	
+	
+	function c4(){
+		tt.remove();
+		var td_menu = $("<td></td>").text($("#menu").val());
+		var td_price = $("<td></td>").text($("#price").val());
+		var tr = $("<tr></tr>").append(td_menu,td_price);
+		$("#tb").prepend(tr);
+		$("#tb").prepend(tt);
+	}
+
+	$(function(){
+		init();
+		$("#bt").click(c2);
+		
+	})
+
+</script>
+</head>
+<body>
+	메뉴명:<input id="menu"><br>
+	가격:<input id="price"><br>
+	<button id="bt">등록</button>
+	<hr>
+	<table id="tb" border="1">
+		<tr id="title">
+			<th>메뉴명</th>
+			<th>가격</th>
+		</tr>
+	</table>
+</body>
+</html>

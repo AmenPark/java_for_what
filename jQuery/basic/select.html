@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	
+
+	$(function() {
+// 		$("button").click(function(){
+// 			$(this).css("background-color", "red");
+// 			$(this).parent().css("background-color", "green");
+// 			$(this).closest("table").css("width",500+500*Math.random());
+// 			alert($(this).parent().find("input").val());
+// 		});
+// 		$("td").click(function(){
+// 			$(this).css("background-color", "purple");
+// 			$(this).children().css("background-color", "pink");
+// 			$(this).find("input").css("color", "grey");
+// 			$(this).filter(".a").css("color", "white");
+			
+// 		});
+		$("button").click(function(){
+			alert($(this).prev().val());
+		});
+// 		$("td").each(function(a,b){
+// 			$(b).find("button").click(function(){
+// 				alert($(b).find("input").val());	
+// 			});
+// 		});
+		
+	});
+	
+</script>
+<link rel="stylesheet" href="cssfile.css" />
+</head>
+<body>
+<table>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+<tr>
+<td><input><button class="a">버튼</button></td>
+</tr>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+<tr>
+<td><input><button>버튼</button></td>
+</tr>
+</table>
+</body>
+</html>
