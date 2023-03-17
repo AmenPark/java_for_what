@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#paper {
+	border: black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	class ball{
+		constructor(posX, posY, spdX, spdY, size, image, pen){
+			this.pos={x:posX, y:posY};
+			this.spd={x:spdX, y:spdY};
+			this.size=size;
+			this.image = image;
+			this.available = true;
+			this.pen = pen;
+		}
+		move(){
+			this.pos.x += this.spd.x;
+			this.pos.y += this.spd.y;
+		}
+		draw(){
+			this.pen.drawImage(this.image, this.pos.x, this.pos.y, this.size, this.size);
+		}
+		drop(){
+			this.available = false;
+		}
+	}
+	
+	class bar{
+		constructor(left, top, length, height, barcolor, pen){
+			this.left = left;
+			this.top = top;
+			this.length = length;
+			this.height = height;
+			this.barcolor = barcolor;
+			this.pen = pen;
+		}
+		draw(){
+			this.pen.fillStyle=this.barcolor;
+			this.pen.fillRect(this.left, this.top, this.length, this.height)
+		}
+	}
+	
+	$(function() {
+		var paper = document.getElementById("paper");
+		var pen = paper.getContext("2d");
+		var posX = $(paper).offset().left;
+		var posY = $(paper).offset().top;
+		var clicked = 0;
+		var android = new Image();
+		var bgc = "rgb(0,0,0)";
+		android.src = "baseball.png";
+		var ballinfo = new ball(300, 500, 5, -7, 20, null, pen)
+		var gametime = 0;
+
+
+		bars = new bar(270,570,100,10,"rgb(20,20,20)",pen);
+		bars.draw();
+
+		pen.fillStyle = bgc;
+		pen.fillRect(0, 0, 600, 600);
+		pen.shadowBlur = 5;
+		pen.shadowColor = "white";
+		android.onload = function() {
+			ballinfo.image=android;
+			ballinfo.draw();
+
+		
+			var mainloop = setInterval(function () {
+				gametime++;
+				if(gametime % 60 == 0 ){
+					ballinfo.spd.y *= 1.05;
+				}
+				pen.fillStyle = bgc;
+				pen.fillRect(0, 0, 600, 600);
+				
+				ballinfo.move();
+				if (ballinfo.available) {
+					if (ballinfo.pos.x >= 600 - ballinfo.size) {
+						ballinfo.spd.x = -Math.abs(ballinfo.spd.x);
+					}
+					if (ballinfo.pos.x <= 0) {
+						ballinfo.spd.x = Math.abs(ballinfo.spd.x)
+					}
+
+					if (ballinfo.pos.y <= 0) {
+						ballinfo.spd.y = Math.abs(ballinfo.spd.y)
+					}
+					if (ballinfo.pos.y >= (bars.top - ballinfo.size)) {
+						if (ballinfo.pos.x >= bars.left - ballinfo.size/2
+								&& ballinfo.pos.x <= bars.left + bars.length + ballinfo.size/2) {
+							if (ballinfo.spd.y > 0) {
+								if(ballinfo.spd.x > 0){
+									ballinfo.spd.x = 1+((ballinfo.pos.x - bars.left) / bars.length)*9;
+								}else{
+									ballinfo.spd.x = -1+((bars.left + bars.length - ballinfo.pos.x) / bars.length)* (-9);
+								}
+								ballinfo.spd.y *= -1;
+							}
+						} else{
+							ballinfo.available = false;
+							setTimeout(function(){
+								clearInterval(mainloop);
+								alert("GG");
+								
+							}, 1000);
+						}
+					}
+				} 
+				ballinfo.draw();
+				bars.draw();
+				
+			}, 15);
+			$("#paper").mousemove(
+					function(e) {
+						bars.left = Math.min(Math.max(e.pageX - posX - 3
+								- bars.length / 2, 0), 600 - bars.length);
+					});
+		};
+
+		$(document).contextmenu(function() {
+			return false
+		});
+
+	})
+</script>
+</head>
+<body>
+	<canvas id="paper" width="600px" height="600px"></canvas>
+</body>
+</html>

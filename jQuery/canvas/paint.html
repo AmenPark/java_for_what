@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#paper {
+	border: black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var paper = document.getElementById("paper");
+		var pen = paper.getContext("2d");
+		var posX = $(paper).offset().left;
+		var posY = $(paper).offset().top;
+		var penSize = 1;
+		var clicked = 0;
+		var mousePos = {x:0, y:0};
+
+		$(paper).click(function( e ) {
+			if(clicked){
+				pen.fillStyle="green";
+				pen.fillRect(e.pageX-posX-5 - penSize/2, e.pageY-posY-5 - penSize/2, penSize, penSize);
+			}
+		});
+		
+				
+		$(paper).mousedown(function(e){
+			clicked = 1
+			startpos={x:e.pageX-posX-5, y:e.pageY-posY-5};
+			pen.moveTo(startpos.x, startpos.y); 
+
+		});
+		$(document).mouseup(function(e){
+			clicked = 0
+
+		});
+		$(document).mousemove(function(e) {
+			if(clicked == 1){
+				pen.beginPath();
+				pen.moveTo(mousePos.x, mousePos.y);
+				pen.lineTo(e.pageX-posX-5, e.pageY-posY-5);
+				pen.lineWidth = 1+$("#lineSize").val()*0.05;
+				pen.stroke();
+				pen.closePath();
+			}
+			mousePos.x = e.pageX-posX-5;
+			mousePos.y = e.pageY-posY-5;
+			
+		})
+
+		$("#colorInput").change(function(){
+			pen.strokeStyle=$(this).val();
+		})
+		
+		$(document).contextmenu(function(){return false});
+		
+	})
+</script>
+</head>
+<body>
+	<canvas id="paper" width="600px" height="600px"></canvas>
+	<input id="colorInput" type="color">
+	<input id="lineSize" type="range">
+</body>
+</html>

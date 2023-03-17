@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#paper {
+	border:black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var paper = document.getElementById("paper");
+		var pen = paper.getContext("2d");
+		var posX = $(paper).offset().left;
+		var posY = $(paper).offset().top;
+		var penSize = 1;
+		var clicked = 0;
+		pen.fillStyle = "#000000";
+		pen.fillRect(0,0,600,600);
+		pen.shadowOffsetX =5;
+		pen.shadowOffsetY =5;
+		setInterval(function() {
+			pen.shadowColor = "#000000";
+			
+			pen.shadowBlur = 0;
+			pen.fillStyle = "#00000011";
+			pen.fillRect(0,0,600,600);
+			var r = Math.random()*256;
+			var g = Math.random()*256;
+			var b = Math.random()*256;
+			var stylergb = "rgb("+r+","+g+","+b+")";
+			pen.fillStyle =  stylergb
+			var Size = Math.random()*30+5;
+			pen.shadowBlur = Size/3;
+			pen.shadowColor =  stylergb
+			before_info = [Math.random()*600+posX+3,Math.random()*600+posY+3,Size,Size]
+			pen.fillRect(before_info[0],before_info[1],before_info[2],before_info[3]);
+		}, 30);
+
+	})
+</script>
+</head>
+<body>
+	<canvas id="paper" width="600px" height="600px"></canvas>
+</body>
+</html>

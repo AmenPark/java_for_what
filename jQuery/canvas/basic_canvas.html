@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#paper {
+	border:black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var paper = document.getElementById("paper");
+		var pen = paper.getContext("2d");
+		var posX = $(paper).offset().left;
+		var posY = $(paper).offset().top;
+		var penSize = 1;
+		var clicked = 0;
+		
+		var android = new Image();
+		android.src = "water.png";
+		android.onload = function(){
+			pen.drawImage(android, 5,5);
+		};
+		
+		$(paper).click(function( e ) {
+			if(clicked){
+				pen.fillStyle="green";
+				pen.fillRect(e.pageX-posX-5 - penSize/2, e.pageY-posY-5 - penSize/2, penSize, penSize);
+			}
+		});
+		
+		$(document).mousedown(function(e){pen.beginPath(); pen.moveTo(e.pageX-posX-5, e.pageY-posY-5)});
+		$(document).mouseup(function(e){pen.closePath(); pen.stroke();});
+		$(paper).mousemove(function(e) {
+			
+				pen.lineTo(e.pageX-posX-5, e.pageY-posY-5, penSize, penSize);
+			
+		})
+		
+		pen.beginPath();
+		
+		
+		$(document).contextmenu(function(){return false});
+
+	})
+</script>
+</head>
+<body>
+	<canvas id="paper" width="600px" height="600px"></canvas>
+</body>
+</html>
