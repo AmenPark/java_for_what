@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cross-domain-ajax</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	var now_url = "https://api.openweathermap.org/data/2.5/weather?";
+	var now_url2 = "http://192.168.0.157/mar201ajax/product.get.json?page=1"
+	var now_data = {};
+	function getWeather(){
+		$.ajax({
+			url: now_url,
+			data: {
+				q:"seoul",
+				appid:"baff8f3c6cbc28a4024e336599de28c4",
+				units:"metric",
+				lang:"kr"
+			},
+			success:function(data){
+				now_data={
+						img:data.weather[0].icon,
+						temp:data.main.temp,
+						descript:data.weather[0].description
+				};
+				$("#krdata").text(now_data.descript);
+				$("#temp").text(now_data.temp);
+			}
+		});
+	}
+	
+	
+	$(function () {
+		getWeather();
+		
+		$(document).mousemove(function(e){
+			$("#wi").css("left", e.pageX).css("top", e.pageY);
+		})
+	});
+	
+	
+
+</script>
+</head>
+<body>
+	<table id="wi" style="position:fixed; width:80px; height:60px;">
+		<tr>
+			<td rowspan="2"><img alt="그림" src="" height="60px" width="50px">
+			<td id="krdata" width="30px"></td>
+		</tr>
+		<tr><td id="temp"></td></tr>
+	</table>
+	
+</body>
+</html>
